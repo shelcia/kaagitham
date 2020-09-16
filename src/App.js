@@ -1,10 +1,12 @@
 import React from "react";
 import "./styles/style.css";
+import Editor from "./components/Editor";
 
 const App = () => {
   return (
     <React.Fragment>
-      <h1>Hi Mofo !!</h1>
+      <Editor />
+      <Editor />
     </React.Fragment>
   );
 };

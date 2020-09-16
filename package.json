@@ -7,11 +7,13 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "immutable": "^4.0.0-rc.12",
+    "mitt": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "slate": "^0.58.4",
-    "slate-react": "^0.58.4"
+    "slate-react": "^0.58.4",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/immutable": "^3.8.7",
+    "@types/slate": "^0.47.7",
+    "@types/slate-react": "^0.22.9"
   }
 }
