@@ -1,5 +1,36 @@
+@import "./components/input";
+
 $font: "Roboto Condensed", sans-serif;
+$primarycolor: #007fff;
 
 * {
   font-family: $font;
+}
+
+.bg-auth {
+  height: 100vh;
+  background-image: url("https://cdn.discordapp.com/attachments/795010536365752320/799358314239754320/bg1.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .row .col-sm-7 .card {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5) !important;
+  }
+}
+
+.btn {
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 0px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.btn-outline-primary {
+  background-color: #0080ff1b;
+  &:hover,
+  &:focus {
+    background-color: $primarycolor;
+  }
 }
