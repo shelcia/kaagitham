@@ -18,8 +18,6 @@ const HOTKEYS = {
   "mod+`": "code",
 };
 
-// const LIST_TYPES = ["numbered-list", "bulleted-list"];
-
 const socket = io("localhost:4000");
 
 const Editor = ({ match }) => {
@@ -27,12 +25,24 @@ const Editor = ({ match }) => {
   const id = useRef(match.params.id);
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
+
+  const [value, setValue] = useState([
+    {
+      type: "paragraph",
+      children: [{ text: "A line of text in a paragraph." }],
+    },
+  ]);
+
   useEffect(() => {
     socket.once("initial", (initial) => {
       setValue(initial);
       console.log(initial);
       console.log("i ran");
     });
+  }, []);
+
+  useEffect(() => {
+    console.log(`sending Text ${id.current}`);
     socket.on("sendText", (text) => {
       if (id.current !== text.id) {
         setValue(text.data);
@@ -42,16 +52,7 @@ const Editor = ({ match }) => {
     return () => {
       socket.off("sendText");
     };
-  }, []);
-
-  const [value, setValue] = useState([
-    {
-      type: "paragraph",
-      children: [{ text: "A line of text in a paragraph." }],
-    },
-  ]);
-
-  //   const [search, setSearch] = useState();
+  }, [value]);
 
   return (
     <React.Fragment>
@@ -79,31 +80,6 @@ const Editor = ({ match }) => {
             <BlockButton format="block-quote" icon="format_quote" />
             <BlockButton format="numbered-list" icon="format_list_numbered" />
             <BlockButton format="bulleted-list" icon="format_list_bulleted" />
-            {/* <div
-              className={css`
-                position: relative;
-              `}
-            >
-              <Icon
-                className={css`
-                  position: absolute;
-                  top: 0.5em;
-                  left: 0.5em;
-                  color: #ccc;
-                `}
-              >
-                search
-              </Icon>
-              <input
-                type="search"
-                placeholder="Search the text..."
-                onChange={(e) => setSearch(e.target.value)}
-                className={css`
-                  padding-left: 2em;
-                  width: 100%;
-                `}
-              />
-            </div> */}
           </Toolbar>
           <Editable
             renderElement={renderElement}
@@ -122,40 +98,6 @@ const Editor = ({ match }) => {
             }}
           />
         </Slate>
-        {/* <MarkButton format="bold" icon="format_bold" />
-      <MarkButton format="italic" icon="format_italic" />
-      <MarkButton format="underline" icon="format_underlined" />
-      <MarkButton format="code" icon="code" />
-      <MarkButton format="heading-one" icon="looks_one" />
-      <MarkButton format="heading-two" icon="looks_two" />
-      <MarkButton format="block-quote" icon="format_quote" />
-      <MarkButton format="numbered-list" icon="format_list_numbered" />
-      <MarkButton format="bulleted-list" icon="format_list_bulleted" />
-      <div className="container border" style={{ marginTop: "12vh" }}>
-        <Slate
-          editor={editor}
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-            socket.emit("text", newValue, id.current);
-          }}
-        >
-          <Editable
-            // renderElement={renderElement}
-            // renderLeaf={renderLeaf}
-            placeholder="Enter some rich text…"
-            spellCheck
-            autoFocus
-            onKeyDown={(event) => {
-              for (const hotkey in HOTKEYS) {
-                if (isHotkey(hotkey, event)) {
-                  event.preventDefault();
-                  const mark = HOTKEYS[hotkey];
-                }
-              }
-            }}
-          />
-        </Slate> */}
       </div>
     </React.Fragment>
   );
