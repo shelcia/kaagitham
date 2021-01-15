@@ -9,7 +9,7 @@ import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import io from "socket.io-client";
 import isHotkey from "is-hotkey";
-import { Toolbar, MarkButton, BlockButton, toggleMark } from "./component";
+import { Toolbar, MarkButton, BlockButton, toggleMark } from "./Component";
 
 const HOTKEYS = {
   "mod+b": "bold",
