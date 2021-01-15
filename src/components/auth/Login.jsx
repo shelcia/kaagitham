@@ -11,32 +11,34 @@ const Login = () => {
         >
           <div className="row w-100">
             <div className="col-sm-5">
-              <h1>n fn nvf nfmb nf nbf</h1>
+              <h1 className="text-light mb-5">Drafts Maker</h1>
+              <ul className="list-group">
+                <li>Instant Creation of Drafts Documents</li>
+                <li>Share anywhere</li>
+                <li>Live Editing</li>
+                <li>No Limit on Content</li>
+              </ul>
             </div>
             <div className="col-sm-7">
               <div className="card border border-0 rounded-0 card-auth">
                 <div className="card-body">
-                  <h1 className="mb-5">Login</h1>
+                  <h1 className="mb-3">Login</h1>
                   <form>
-                    <div className="form-check border">
-                      {/* <label className="form-check-label">Username</label> */}
+                    <div className="form-check mb-3 pl-0">
                       <input
                         className="form-control"
-                        type="text"
-                        data-text="username"
-                        // placeholder="enter your username"
+                        type="email"
+                        placeholder="enter your email"
                       />
                     </div>
-                    <div className="form-check border">
-                      {/* <label className="form-check-label">Password</label> */}
+                    <div className="form-check mb-3 pl-0">
                       <input
                         className="form-control"
                         type="password"
-                        data-text="password"
-                        // placeholder="enter your password"
+                        placeholder="enter your password"
                       />
                     </div>
-                    <div className="text-center mt-5">
+                    <div className="text-center mt-3">
                       <Link to={`/group/${Date.now()}`}>
                         <button
                           type="button"
@@ -47,6 +49,9 @@ const Login = () => {
                       </Link>
                     </div>
                   </form>
+                  <div className="text-center mt-3">
+                    <Link to="/">Don't have an account?? then Signup</Link>
+                  </div>
                 </div>
               </div>
             </div>

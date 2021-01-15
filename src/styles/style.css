@@ -59,4 +59,45 @@
 .btn-outline-primary:hover, .btn-outline-primary:focus {
   background-color: #007fff;
 }
+
+.list-group {
+  margin-left: 2rem;
+  list-style-type: lower-greek;
+}
+
+.list-group li {
+  color: white;
+  padding-bottom: 1rem;
+}
+
+.card-auth {
+  -webkit-animation: auth-form 1s;
+          animation: auth-form 1s;
+}
+
+@-webkit-keyframes auth-form {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes auth-form {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 /*# sourceMappingURL=style.css.map */
