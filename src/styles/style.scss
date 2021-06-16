@@ -1,61 +1,98 @@
-@import "./components/input";
-
-$font: "Roboto Condensed", sans-serif;
+$font: "Andika New Basic", sans-serif;
 $primarycolor: #007fff;
+$borderColor: rgb(9, 177, 255);
 
 * {
   font-family: $font;
 }
 
+.navbar-custom {
+  border-top: 4px solid rgb(9, 177, 255);
+  background-color: transparent !important;
+}
+
 .bg-auth {
-  height: 100vh;
-  background-image: url("https://cdn.discordapp.com/attachments/795010536365752320/799358314239754320/bg1.png");
-  background-position: center center;
-  background-repeat: no-repeat;
+  height: 90vh;
+  background: rgb(31, 35, 41);
+  overflow-y: scroll;
+}
+
+.footer {
+  height: 10vh;
+  background: rgb(31, 35, 41);
+}
+
+.title {
+  max-width: 740px;
+  margin-right: auto;
+  margin-left: auto;
+  background-image: url("./svg.png");
+  background-position: 0% 50%;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  font-size: 56px;
+  line-height: 64px;
+  text-align: center;
+  text-shadow: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  .row .col-sm-7 .card {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.5) !important;
+.feature-card {
+  background-color: black;
+  border: 2px solid $borderColor;
+  width: 260px;
+  svg {
+    color: $borderColor;
+    // height: 2rem;
+    font-size: 1.5rem;
   }
-}
-
-.btn {
-  padding: 0.5rem 1.5rem !important;
-  border-radius: 0px;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-}
-
-.btn-outline-primary {
-  background-color: #0080ff1b;
-  &:hover,
-  &:focus {
-    background-color: $primarycolor;
-  }
-}
-
-.list-group {
-  margin-left: 2rem;
-  list-style-type: lower-greek;
-
-  li {
+  p {
+    display: inline-block;
+    margin-bottom: 0px;
     color: white;
-    padding-bottom: 1rem;
+    margin-left: 1rem;
   }
 }
 
-.card-auth {
-  animation: auth-form 1s;
-}
+// .btn {
+//   padding: 0.5rem 1.5rem !important;
+//   border-radius: 0px;
+//   text-transform: uppercase;
+//   letter-spacing: 1.2px;
+// }
 
-@keyframes auth-form {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
+// .btn-outline-primary {
+//   background-color: #0080ff1b;
+//   &:hover,
+//   &:focus {
+//     background-color: $primarycolor;
+//   }
+// }
+
+// .list-group {
+//   margin-left: 2rem;
+//   list-style-type: lower-greek;
+
+//   li {
+//     color: white;
+//     padding-bottom: 1rem;
+//   }
+// }
+
+// .card-auth {
+//   animation: auth-form 1s;
+// }
+
+// @keyframes auth-form {
+//   from {
+//     opacity: 0;
+//     transform: scale(0.98);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: scale(1);
+//   }
+// }
