@@ -53,4 +53,8 @@
   color: white;
   margin-left: 1rem;
 }
+
+button:focus {
+  outline: none;
+}
 /*# sourceMappingURL=style.css.map */

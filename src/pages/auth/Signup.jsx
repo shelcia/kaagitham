@@ -1,71 +1,130 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Footer from "../../components/templates/Footer";
+import Topbar from "../../components/templates/Topbar";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  CssBaseline,
+  Paper,
+  FormControlLabel,
+  Checkbox,
+  Link,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "70vh",
+  },
+  image: {
+    backgroundImage:
+      'url("https://cdn.discordapp.com/attachments/795010536365752320/854981273080561664/businessman-signing-contract.png")',
+    backgroundRepeat: "no-repeat",
+    backgroundColor: "#00000000",
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+  },
+  container: {
+    backgroundColor: "#e1f5fe0",
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const Signup = () => {
+  const classes = useStyles();
+  //   const card_classes = useCardStyles();
+
   return (
     <React.Fragment>
-      <div className="bg-auth">
-        <div
-          className="container d-flex justify-content-center align-items-center"
-          style={{ height: "100vh" }}
-        >
-          <div className="row w-100">
-            <div className="col-sm-5">
-              <h1 className="text-light mb-5">Drafts Maker</h1>
-              <ul className="list-group">
-                <li>Instant Creation of Drafts Documents</li>
-                <li>Share anywhere</li>
-                <li>Live Editing</li>
-                <li>No Limit on Content</li>
-              </ul>
-            </div>
-            <div className="col-sm-7">
-              <div className="card border border-0 rounded-0 card-auth">
-                <div className="card-body">
-                  <h1 className="mb-3">Signup</h1>
-                  <form>
-                    <div className="form-check mb-3 pl-0">
-                      <input
-                        className="form-control"
-                        type="email"
-                        placeholder="enter your email"
-                      />
-                    </div>
-                    <p>
-                      P.S We won't be sending emails
-                      <span role="img" aria-label="">
-                        🤪🤪
-                      </span>
-                    </p>
-                    <div className="form-check mb-3 pl-0">
-                      <input
-                        className="form-control"
-                        type="password"
-                        placeholder="enter your password"
-                      />
-                    </div>
-                    <div className="text-center mt-3">
-                      <Link to={`/group/${Date.now()}`}>
-                        <button
-                          type="button"
-                          className="btn btn-outline-primary"
-                        >
-                          Enter
-                        </button>
+      <section className="bg-auth">
+        <Topbar />
+        <div className="container" style={{ marginTop: "5rem" }}>
+          <Grid container component="main" className={classes.root}>
+            <CssBaseline />
+            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            <Grid
+              item
+              xs={12}
+              sm={8}
+              md={5}
+              component={Paper}
+              elevation={6}
+              square
+              className={classes.container}
+            >
+              <div className={classes.paper}>
+                <Typography component="h1" variant="h5">
+                  Sign up
+                </Typography>
+                <form className={classes.form} noValidate>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="I have read this information"
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Sign Up
+                  </Button>
+                  <Grid container>
+                    <Grid item xs></Grid>
+                    <Grid item>
+                      <Link href="/login" variant="body2">
+                        {"Have an account already? Login"}
                       </Link>
-                    </div>
-                  </form>
-                  <div className="text-center mt-3">
-                    <Link to="/login">
-                      Have an account already?? then Login
-                    </Link>
-                  </div>
-                </div>
+                    </Grid>
+                  </Grid>
+                </form>
               </div>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </div>
-      </div>
+      </section>
+      <Footer />
     </React.Fragment>
   );
 };

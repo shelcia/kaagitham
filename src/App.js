@@ -1,13 +1,11 @@
 import React from "react";
 import "./styles/style.css";
-import Editor from "./components/editor/Editor";
-import Login from "./pages/auth/Home";
+import Editor from "./components/layout/Editor";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import MainPage from "./components/editor/MainPage";
-import Signup from "./pages/auth/Signup";
-import Home from "./pages/auth/Home";
+import MainPage from "./components/layout/MainPage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
+import { HomeRoutes } from "./router";
 
 const App = () => {
   const theme = createMuiTheme({
@@ -20,9 +18,15 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Signup} />
-            <Route path="/login" exact component={Login} />
+            {HomeRoutes.map((route) => (
+              <Route
+                exact
+                path={route.routeLink}
+                component={route.file}
+                index={route.routeLink}
+              />
+            ))}
+
             <Route path="/user/:id" exact component={MainPage} />
             <Route path="/group/:id" exact component={Editor} />
           </Switch>

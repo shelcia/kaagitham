@@ -6,7 +6,7 @@ import {
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
 
-export const Topbar = () => {
+const Topbar = () => {
   return (
     <header>
       <nav className="navbar navbar-dark bg-light navbar-custom fixed-top">
@@ -33,3 +33,5 @@ export const Topbar = () => {
     </header>
   );
 };
+
+export default Topbar;

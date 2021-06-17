@@ -1,58 +1,57 @@
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  useRef,
-  useCallback,
-} from "react";
-import { createEditor } from "slate";
-import { Slate, Editable, withReact } from "slate-react";
-import io from "socket.io-client";
-import isHotkey from "is-hotkey";
-import { Toolbar, MarkButton, BlockButton, toggleMark } from "./Component";
+import React from // useEffect,
+// useMemo,
+// useState,
+// useRef,
+// useCallback,
+"react";
+// import { createEditor } from "slate";
+// import { Slate, Editable, withReact } from "slate-react";
+// import io from "socket.io-client";
+// import isHotkey from "is-hotkey";
+// import { Toolbar, MarkButton, BlockButton, toggleMark } from "./Component";
 
-const HOTKEYS = {
-  "mod+b": "bold",
-  "mod+i": "italic",
-  "mod+u": "underline",
-  "mod+`": "code",
-};
+// const HOTKEYS = {
+//   "mod+b": "bold",
+//   "mod+i": "italic",
+//   "mod+u": "underline",
+//   "mod+`": "code",
+// };
 
-const socket = io("localhost:4000");
+// const socket = io("localhost:4000");
 
 const Editor = ({ match }) => {
-  const editor = useMemo(() => withReact(createEditor()), []);
-  const id = useRef(match.params.id);
-  const renderElement = useCallback((props) => <Element {...props} />, []);
-  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
+  // const editor = useMemo(() => withReact(createEditor()), []);
+  // const id = useRef(match.params.id);
+  // const renderElement = useCallback((props) => <Element {...props} />, []);
+  // const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
 
-  const [value, setValue] = useState([
-    {
-      type: "paragraph",
-      children: [{ text: "A line of text in a paragraph." }],
-    },
-  ]);
+  // const [value, setValue] = useState([
+  //   {
+  //     type: "paragraph",
+  //     children: [{ text: "A line of text in a paragraph." }],
+  //   },
+  // ]);
 
-  useEffect(() => {
-    socket.once("initial", (initial) => {
-      setValue(initial);
-      console.log(initial);
-      console.log("i ran");
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.once("initial", (initial) => {
+  //     setValue(initial);
+  //     console.log(initial);
+  //     console.log("i ran");
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    console.log(`sending Text ${id.current}`);
-    socket.on("sendText", (text) => {
-      if (id.current !== text.id) {
-        setValue(text.data);
-        console.log("all other users");
-      }
-    });
-    return () => {
-      socket.off("sendText");
-    };
-  }, [value]);
+  // useEffect(() => {
+  //   console.log(`sending Text ${id.current}`);
+  //   socket.on("sendText", (text) => {
+  //     if (id.current !== text.id) {
+  //       setValue(text.data);
+  //       console.log("all other users");
+  //     }
+  //   });
+  //   return () => {
+  //     socket.off("sendText");
+  //   };
+  // }, [value]);
 
   return (
     <React.Fragment>
@@ -62,7 +61,7 @@ const Editor = ({ match }) => {
         </a>
       </nav>
       <div className="container" style={{ marginTop: "12vh" }}>
-        <Slate
+        {/* <Slate
           editor={editor}
           value={value}
           onChange={(newValue) => {
@@ -97,7 +96,7 @@ const Editor = ({ match }) => {
               }
             }}
           />
-        </Slate>
+        </Slate> */}
       </div>
     </React.Fragment>
   );

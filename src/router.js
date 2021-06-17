@@ -1,5 +1,6 @@
 import Home from "./pages/auth/Home";
 import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
 
 export const HomeRoutes = [
   {
@@ -11,7 +12,7 @@ export const HomeRoutes = [
     routeLink: "/signup",
   },
   {
-    file: Signup,
+    file: Login,
     routeLink: "/login",
   },
 ];

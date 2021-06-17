@@ -1,9 +1,10 @@
 import React from "react";
 import { FeaturesContent } from "../../components/content/Features";
-import { Topbar } from "../../components/templates/Topbar";
-import { Divider, Button } from "@material-ui/core";
+import Topbar from "../../components/templates/Topbar";
+import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import Footer from "../../components/templates/Footer";
 
 const Home = () => {
   return (
@@ -18,6 +19,9 @@ const Home = () => {
           <h1 className="title mt-3" style={{ fontWeight: "700" }}>
             Collaborate from anywhere to create drafts
           </h1>
+          <p className="text-white mt-3">
+            Kaagitham helps you create draft which can be shared across easily.
+          </p>
           <div className="row my-5">
             {FeaturesContent.map((feature, index) => (
               <div className="col-lg-3 mb-3" key={index}>
@@ -37,10 +41,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <footer className="footer">
-        <Divider />
-        jkjkj
-      </footer>
+      <Footer />
     </React.Fragment>
   );
 };
