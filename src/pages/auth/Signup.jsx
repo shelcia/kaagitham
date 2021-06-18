@@ -80,9 +80,20 @@ const Signup = () => {
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
+                    id="name"
+                    label="Name"
+                    name="name"
+                    autoComplete="name"
+                    autoFocus
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
                     label="Email Address"
                     name="email"
+                    type="email"
                     autoComplete="email"
                     autoFocus
                   />

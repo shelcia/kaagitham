@@ -1,10 +1,9 @@
-# Google Docs Clone Using Slate.js and React
+# Kaagitham
 
-
-### To work with this repo
+## To work with this repo
 
 - Clone this repo
 
-- Run <code>npm install</code>
+- Run `npm install`
 
-- Then Run <code>npm start</code>
+- Then Run `npm start`

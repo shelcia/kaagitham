@@ -2,6 +2,11 @@
   font-family: "Andika New Basic", sans-serif;
 }
 
+.bg-darkColor {
+  background: #1f2329;
+  background-color: #1f2329;
+}
+
 .navbar-custom {
   border-top: 4px solid #09b1ff;
   background-color: transparent !important;
@@ -56,5 +61,11 @@
 
 button:focus {
   outline: none;
+}
+
+.bg-dashboard {
+  height: 100vh;
+  background: #1f2329;
+  overflow-y: auto;
 }
 /*# sourceMappingURL=style.css.map */
