@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Quill from "quill";
-import "react-quill/dist/quill.snow.css";
+import "quill/dist/quill.snow.css";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -11,29 +11,52 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import DocumentTopbar from "../../components/templates/DocumentTopbar";
+import { io } from "socket.io-client";
+import { toolbarOptions } from "../../components/content/Toolbar";
 
 const Editor = () => {
   // const [value, setValue] = useState("");
+  const [socket, setSocket] = useState();
+  const [quill, setQuill] = useState();
+  const SERVER_URL = process.env.REACT_APP_HEROKU_LINK;
 
-  const toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
+  //INITIATING CLIENT SOCKET -> CONNECTING WITH SERVER
+  useEffect(() => {
+    const s = io(SERVER_URL);
+    setSocket(s);
+    return () => {
+      s.disconnect();
+    };
+  }, [SERVER_URL]);
 
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
+  //SENDING CHANGES MADE BY THE CURRENT USER TO THE SERVER
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    const handler = (delta, oldDelta, source) => {
+      if (source !== "user") return;
+      socket.emit("send-changes", delta);
+    };
+    quill.on("text-change", handler);
+    return () => {
+      quill.off("text-change", handler);
+    };
+  }, [quill, socket]);
 
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  //RECEIVING CHANGES MADE BY OTHER USER FROM THE SERVER
 
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-    ["link", "image", "video"],
-    ["clean"], // remove formatting button
-  ];
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    const handler = (delta) => {
+      quill.updateContents(delta);
+      // socket.emit("send-changes", delta);
+    };
+    socket.on("receive-changes", handler);
+    return () => {
+      socket.off("receive-changes", handler);
+    };
+  }, [quill, socket]);
+
+  //DRAWER STYLES
   const useStyles = makeStyles({
     list: {
       width: 250,
@@ -43,11 +66,10 @@ const Editor = () => {
     },
   });
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
+
+  //DRAWER TOGGLE VIEW
+  const [state, setState] = useState({
     left: false,
-    bottom: false,
-    right: false,
   });
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -60,7 +82,6 @@ const Editor = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  //seee
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -89,28 +110,26 @@ const Editor = () => {
       </List>
     </div>
   );
-  const wrapperRef = useCallback(
-    (wrapper) => {
-      // console.log(wrapper);
-      if (wrapper == null) return;
-      wrapper.innerHTML = "";
-      const editor = document.createElement("div");
-      wrapper.append(editor);
-      new Quill(editor, {
-        modules: {
-          syntax: true,
-          toolbar: toolbarOptions,
-          history: {
-            delay: 2000,
-            maxStack: 500,
-            userOnly: true,
-          },
+  const wrapperRef = useCallback((wrapper) => {
+    // console.log(wrapper);
+    if (wrapper == null) return;
+    wrapper.innerHTML = "";
+    const editor = document.createElement("div");
+    wrapper.append(editor);
+    const q = new Quill(editor, {
+      modules: {
+        syntax: true,
+        toolbar: toolbarOptions,
+        history: {
+          delay: 2000,
+          maxStack: 500,
+          userOnly: true,
         },
-        theme: "snow",
-      });
-    },
-    [toolbarOptions]
-  );
+      },
+      theme: "snow",
+    });
+    setQuill(q);
+  }, []);
 
   return (
     <React.Fragment>
