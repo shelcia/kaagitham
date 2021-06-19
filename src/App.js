@@ -25,7 +25,7 @@ const App = () => {
                 exact
                 path={route.routeLink}
                 component={route.file}
-                index={route.routeLink}
+                key={route.routeLink}
               />
             ))}
 
@@ -34,7 +34,7 @@ const App = () => {
                 exact
                 path={route.routeLink}
                 component={route.file}
-                index={route.routeLink}
+                key={route.routeLink}
               />
             ))}
 

@@ -2,6 +2,9 @@ $font: "Andika New Basic", sans-serif;
 $primarycolor: #007fff;
 $borderColor: rgb(9, 177, 255);
 $bgColor: rgb(31, 35, 41);
+$featureCard: black;
+$textColor: white;
+$shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 
 * {
   font-family: $font;
@@ -47,7 +50,7 @@ $bgColor: rgb(31, 35, 41);
 }
 
 .feature-card {
-  background-color: black;
+  background-color: $featureCard;
   border: 2px solid $borderColor;
   width: 260px;
   svg {
@@ -58,7 +61,7 @@ $bgColor: rgb(31, 35, 41);
   p {
     display: inline-block;
     margin-bottom: 0px;
-    color: white;
+    color: $textColor;
     margin-left: 1rem;
   }
 }
@@ -68,47 +71,68 @@ button:focus {
 }
 
 .bg-dashboard {
-  height: 100vh;
-  background: rgb(31, 35, 41);
+  min-height: 100vh;
+  background: $bgColor;
   overflow-y: auto;
 }
 
-// .btn {
-//   padding: 0.5rem 1.5rem !important;
-//   border-radius: 0px;
-//   text-transform: uppercase;
-//   letter-spacing: 1.2px;
-// }
+.ql-container.ql-snow {
+  border: none;
+}
 
-// .btn-outline-primary {
-//   background-color: #0080ff1b;
-//   &:hover,
-//   &:focus {
-//     background-color: $primarycolor;
-//   }
-// }
+.ql-toolbar.ql-snow {
+  border: none;
+  box-shadow: $shadow;
+  background-color: $textColor;
+  width: 100%;
+}
+.editor-container {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .ql-editor {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: $shadow;
+    background-color: $textColor;
+  }
+}
 
-// .list-group {
-//   margin-left: 2rem;
-//   list-style-type: lower-greek;
+@media only screen and (max-width: 8.5in) {
+  .editor-container .ql-editor {
+    width: 95%;
+  }
+  .editor-container {
+    display: block;
+  }
+}
 
-//   li {
-//     color: white;
-//     padding-bottom: 1rem;
-//   }
-// }
+@page {
+  margin: 1in;
+}
 
-// .card-auth {
-//   animation: auth-form 1s;
-// }
+@media print {
+  body {
+    background: none;
+  }
+  .editor-container .ql-editor {
+    width: 9.5in;
+    // height: 9in;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    align-self: flex-start;
+  }
+  .editor-container .ql-toolbar,
+  .MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrimary.MuiPaper-elevation4 {
+    display: none;
+  }
+}
 
-// @keyframes auth-form {
-//   from {
-//     opacity: 0;
-//     transform: scale(0.98);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: scale(1);
-//   }
+// .ql-snow.ql-picker {
+//   color: $textColor !important;
 // }

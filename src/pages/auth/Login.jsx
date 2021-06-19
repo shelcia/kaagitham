@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../components/templates/Footer";
 import Topbar from "../../components/templates/Topbar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,8 +11,8 @@ import {
   Paper,
   FormControlLabel,
   Checkbox,
-  Link,
 } from "@material-ui/core";
+import { Link as RouteLink, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +52,22 @@ const Login = () => {
   const classes = useStyles();
   //   const card_classes = useCardStyles();
 
+  const [inputs, setInputs] = useState({
+    email: "",
+    pwd: "",
+  });
+
+  const history = useHistory();
+
+  const handleInputs = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = () => {
+    console.table(inputs);
+    history.push("/user/:id");
+  };
+
   return (
     <React.Fragment>
       <section className="bg-auth">
@@ -74,8 +90,10 @@ const Login = () => {
                 <Typography component="h1" variant="h5">
                   Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={onSubmit}>
                   <TextField
+                    value={inputs.email}
+                    onChange={handleInputs}
                     variant="outlined"
                     margin="normal"
                     required
@@ -87,6 +105,8 @@ const Login = () => {
                     autoFocus
                   />
                   <TextField
+                    value={inputs.pwd}
+                    onChange={handleInputs}
                     variant="outlined"
                     margin="normal"
                     required
@@ -112,14 +132,12 @@ const Login = () => {
                   </Button>
                   <Grid container>
                     <Grid item xs>
-                      <Link href="#" variant="body2">
-                        Forgot password?
-                      </Link>
+                      <RouteLink to="#">Forgot password?</RouteLink>
                     </Grid>
                     <Grid item>
-                      <Link href="/signup" variant="body2">
+                      <RouteLink to="/signup">
                         {"Don't have an account? Sign Up"}
-                      </Link>
+                      </RouteLink>
                     </Grid>
                   </Grid>
                 </form>

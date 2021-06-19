@@ -4,6 +4,8 @@ import Login from "./pages/auth/Login";
 
 import Dashboard from "./pages/home/Dashboard";
 
+import Document from "./pages/document/Document";
+
 export const HomeRoutes = [
   {
     file: Home,
@@ -23,5 +25,9 @@ export const DashboardRoutes = [
   {
     file: Dashboard,
     routeLink: "/user/:id",
+  },
+  {
+    file: Document,
+    routeLink: "/document/:id",
   },
 ];

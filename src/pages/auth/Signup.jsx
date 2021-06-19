@@ -11,8 +11,8 @@ import {
   Paper,
   FormControlLabel,
   Checkbox,
-  Link,
 } from "@material-ui/core";
+import { Link as RouteLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -124,9 +124,9 @@ const Signup = () => {
                   <Grid container>
                     <Grid item xs></Grid>
                     <Grid item>
-                      <Link href="/login" variant="body2">
+                      <RouteLink to="/login">
                         {"Have an account already? Login"}
-                      </Link>
+                      </RouteLink>
                     </Grid>
                   </Grid>
                 </form>
