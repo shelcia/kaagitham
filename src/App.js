@@ -6,11 +6,11 @@ import { DashboardRoutes, HomeRoutes } from "./router";
 
 //STYLES
 import "./styles/style.css";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
 
 const App = () => {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       primary: blue,
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../components/templates/Footer";
 import Topbar from "../../components/templates/Topbar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,7 +50,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = () => {
   const classes = useStyles();
-  //   const card_classes = useCardStyles();
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputs = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   return (
     <React.Fragment>
@@ -76,6 +85,8 @@ const Signup = () => {
                 </Typography>
                 <form className={classes.form} noValidate>
                   <TextField
+                    value={user.name}
+                    onChange={handleInputs}
                     variant="outlined"
                     margin="normal"
                     required
@@ -87,6 +98,8 @@ const Signup = () => {
                     autoFocus
                   />
                   <TextField
+                    value={user.email}
+                    onChange={handleInputs}
                     variant="outlined"
                     margin="normal"
                     required
@@ -98,6 +111,8 @@ const Signup = () => {
                     autoFocus
                   />
                   <TextField
+                    value={user.password}
+                    onChange={handleInputs}
                     variant="outlined"
                     margin="normal"
                     required

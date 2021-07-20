@@ -13,6 +13,7 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { Link as RouteLink, useHistory } from "react-router-dom";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,11 +51,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  //   const card_classes = useCardStyles();
 
   const [inputs, setInputs] = useState({
     email: "",
-    pwd: "",
+    password: "",
   });
 
   const history = useHistory();
@@ -63,9 +63,21 @@ const Login = () => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     console.table(inputs);
-    history.push("/user/:id");
+
+    const body = {
+      email: inputs.email,
+      password: inputs.password,
+    };
+    axios
+      .post(`${process.env.REACT_APP_SOCKET_LOCAL_LINK}api/auth/login`, body)
+      .then((res) => {
+        console.log(res);
+        history.push(`/user/${res.data.id}`);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -90,7 +102,7 @@ const Login = () => {
                 <Typography component="h1" variant="h5">
                   Sign in
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={onSubmit}>
+                <form className={classes.form} noValidate>
                   <TextField
                     value={inputs.email}
                     onChange={handleInputs}
@@ -98,14 +110,13 @@ const Login = () => {
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
                     label="Email Address"
                     name="email"
                     autoComplete="email"
                     autoFocus
                   />
                   <TextField
-                    value={inputs.pwd}
+                    value={inputs.password}
                     onChange={handleInputs}
                     variant="outlined"
                     margin="normal"
@@ -114,7 +125,6 @@ const Login = () => {
                     name="password"
                     label="Password"
                     type="password"
-                    id="password"
                     autoComplete="current-password"
                   />
                   <FormControlLabel
@@ -127,6 +137,10 @@ const Login = () => {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") onSubmit(e);
+                    }}
+                    onClick={(e) => onSubmit(e)}
                   >
                     Sign In
                   </Button>

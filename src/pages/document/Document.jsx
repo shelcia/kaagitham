@@ -1,33 +1,26 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  Drawer,
-  List,
-  Divider,
-  ListItem,
-  ListItemText,
-} from "@material-ui/core";
+import { Drawer } from "@material-ui/core";
 import DocumentTopbar from "../../components/templates/DocumentTopbar";
 import { io } from "socket.io-client";
 import { toolbarOptions } from "../../components/content/Toolbar";
+import DocumentSidenav from "../../components/content/DocumentSidenav";
 
 const Editor = () => {
   // const [value, setValue] = useState("");
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
-  const SERVER_URL = process.env.REACT_APP_HEROKU_LINK;
+  const SOCKET_URL = process.env.REACT_APP_REST_LOCAL_LINK;
 
   //INITIATING CLIENT SOCKET -> CONNECTING WITH SERVER
   useEffect(() => {
-    const s = io(SERVER_URL);
+    const s = io(SOCKET_URL);
     setSocket(s);
     return () => {
       s.disconnect();
     };
-  }, [SERVER_URL]);
+  }, [SOCKET_URL]);
 
   //SENDING CHANGES MADE BY THE CURRENT USER TO THE SERVER
   useEffect(() => {
@@ -56,60 +49,19 @@ const Editor = () => {
     };
   }, [quill, socket]);
 
-  //DRAWER STYLES
-  const useStyles = makeStyles({
-    list: {
-      width: 250,
-    },
-    fullList: {
-      width: "auto",
-    },
-  });
-  const classes = useStyles();
-
   //DRAWER TOGGLE VIEW
-  const [state, setState] = useState({
-    left: false,
-  });
-  const toggleDrawer = (anchor, open) => (event) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
-
-    setState({ ...state, [anchor]: open });
+    setDrawerOpen(!drawerOpen);
   };
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
   const wrapperRef = useCallback((wrapper) => {
     // console.log(wrapper);
     if (wrapper == null) return;
@@ -133,13 +85,9 @@ const Editor = () => {
 
   return (
     <React.Fragment>
-      <DocumentTopbar toggle={toggleDrawer("left", true)} />
-      <Drawer
-        anchor={"left"}
-        open={state["left"]}
-        onClose={toggleDrawer("left", false)}
-      >
-        {list("left")}
+      <DocumentTopbar toggle={toggleDrawer(true)} />
+      <Drawer anchor={"left"} open={drawerOpen} onClose={toggleDrawer(false)}>
+        <DocumentSidenav toggleDrawer={toggleDrawer} />
       </Drawer>
       <div className="editor-container" ref={wrapperRef}></div>
     </React.Fragment>
