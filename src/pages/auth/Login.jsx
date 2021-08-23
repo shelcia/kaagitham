@@ -65,7 +65,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.table(inputs);
+    // console.table(inputs);
 
     const body = {
       email: inputs.email,
@@ -74,7 +74,11 @@ const Login = () => {
     axios
       .post(`${process.env.REACT_APP_SOCKET_LOCAL_LINK}api/auth/login`, body)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        localStorage.setItem("KG-id", res.data.id);
+        localStorage.setItem("KG-name", res.data.name);
+        localStorage.setItem("KG-token", res.data.token);
+
         history.push(`/user/${res.data.id}`);
       })
       .catch((err) => console.log(err));

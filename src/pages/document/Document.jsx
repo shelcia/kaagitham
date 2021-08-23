@@ -27,7 +27,8 @@ const Editor = () => {
     if (socket == null || quill == null) return;
     const handler = (delta, oldDelta, source) => {
       if (source !== "user") return;
-      socket.emit("send-changes", delta);
+      const id = localStorage.getItem("KG-id");
+      socket.emit("send-changes", { delta: delta, id: id });
     };
     quill.on("text-change", handler);
     return () => {
