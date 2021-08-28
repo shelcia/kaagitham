@@ -6,14 +6,15 @@ import DocumentTopbar from "../../components/templates/DocumentTopbar";
 import { io } from "socket.io-client";
 import { toolbarOptions } from "../../components/content/Toolbar";
 import DocumentSidenav from "../../components/content/DocumentSidenav";
+// import TextEditor from "../../components/content/Editor";
 
 const Editor = () => {
-  // const [value, setValue] = useState("");
+  const [value, setValue] = useState("");
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const SOCKET_URL = process.env.REACT_APP_REST_LOCAL_LINK;
 
-  //INITIATING CLIENT SOCKET -> CONNECTING WITH SERVER
+  // INITIATING CLIENT SOCKET -> CONNECTING WITH SERVER
   useEffect(() => {
     const s = io(SOCKET_URL);
     setSocket(s);
@@ -22,7 +23,7 @@ const Editor = () => {
     };
   }, [SOCKET_URL]);
 
-  //SENDING CHANGES MADE BY THE CURRENT USER TO THE SERVER
+  // SENDING CHANGES MADE BY THE CURRENT USER TO THE SERVER
   useEffect(() => {
     if (socket == null || quill == null) return;
     const handler = (delta, oldDelta, source) => {
@@ -36,7 +37,7 @@ const Editor = () => {
     };
   }, [quill, socket]);
 
-  //RECEIVING CHANGES MADE BY OTHER USER FROM THE SERVER
+  // RECEIVING CHANGES MADE BY OTHER USER FROM THE SERVER
 
   useEffect(() => {
     if (socket == null || quill == null) return;
@@ -90,6 +91,7 @@ const Editor = () => {
       <Drawer anchor={"left"} open={drawerOpen} onClose={toggleDrawer(false)}>
         <DocumentSidenav toggleDrawer={toggleDrawer} />
       </Drawer>
+      {/* <TextEditor /> */}
       <div className="editor-container" ref={wrapperRef}></div>
     </React.Fragment>
   );
