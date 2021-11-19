@@ -10,3 +10,18 @@ Kaagitham allows you to create drafts instantly.
 - Run `npm install`
 
 - Then Run `npm start`
+
+
+
+# For Backend services
+
+- Clone REST API Backend
+
+https://github.com/shelcia/kaagitham-backend
+
+
+- Clone Web Socket Backend
+
+https://github.com/shelcia/google-docs-server
+
+
