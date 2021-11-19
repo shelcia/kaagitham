@@ -21,7 +21,7 @@ export default function TextEditor() {
   const { id: documentId } = useParams();
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
-  const SOCKET_URL = process.env.REACT_APP_REST_LOCAL_LINK;
+  const SOCKET_URL = process.env.REACT_APP_SOCKET_LOCAL_LINK;
 
   useEffect(() => {
     // const s = io("*");

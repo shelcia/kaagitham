@@ -72,9 +72,9 @@ const Login = () => {
       password: inputs.password,
     };
     axios
-      .post(`${process.env.REACT_APP_SOCKET_LOCAL_LINK}api/auth/login`, body)
+      .post(`${process.env.REACT_APP_REST_LOCAL_LINK}api/auth/login`, body)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         localStorage.setItem("KG-id", res.data.id);
         localStorage.setItem("KG-name", res.data.name);
         localStorage.setItem("KG-token", res.data.token);

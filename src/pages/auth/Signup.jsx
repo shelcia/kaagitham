@@ -13,6 +13,9 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { Link as RouteLink } from "react-router-dom";
+import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +62,25 @@ const Signup = () => {
 
   const handleInputs = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const history = useHistory();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // console.table(inputs);
+
+    const body = user;
+    console.log(body);
+    axios
+      .post(`${process.env.REACT_APP_REST_LOCAL_LINK}api/auth/register`, body)
+      .then((res) => {
+        console.log(res);
+        toast.success("successfully created account. Now please Login");
+
+        history.push(`/login`);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -133,6 +155,7 @@ const Signup = () => {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={onSubmit}
                   >
                     Sign Up
                   </Button>
