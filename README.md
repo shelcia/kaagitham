@@ -1,6 +1,9 @@
 ![kaagitham](https://socialify.git.ci/shelcia/kaagitham/image?description=1&font=Bitter&language=1&owner=1&stargazers=1&theme=Dark)
 
 
+PRS to backend repositories will also be considered as contribution to this Repository for CodePeak'21
+
+
 Kaagitham allows you to create drafts instantly.
 
 ## To work with this repo
