@@ -12,6 +12,12 @@ Kaagitham allows you to create drafts instantly.
 
 - Run `npm install`
 
+- Add .env file and add these variables
+
+`REACT_APP_SOCKET_LOCAL_LINK = http://localhost:4000/`
+
+`REACT_APP_REST_LOCAL_LINK = http://localhost:4050/`
+
 - Then Run `npm start`
 
 
