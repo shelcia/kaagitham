@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import {
   HiOutlineDocumentText,
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
+import { Button } from "@mui/material";
 
 const Topbar = () => {
   return (

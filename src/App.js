@@ -1,13 +1,13 @@
 import React from "react";
 
 //ROUTER MODULES
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { DashboardRoutes, HomeRoutes } from "./router";
+import { useRoutes } from "react-router-dom";
 
 //STYLES
 import "./styles/style.css";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import blue from "@material-ui/core/colors/blue";
+import routes from "./router";
+import { blue } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const App = () => {
   const theme = createTheme({
@@ -15,34 +15,12 @@ const App = () => {
       primary: blue,
     },
   });
+
+  const allPages = useRoutes(routes);
+
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            {HomeRoutes.map((route) => (
-              <Route
-                exact
-                path={route.routeLink}
-                component={route.file}
-                key={route.routeLink}
-              />
-            ))}
-
-            {DashboardRoutes.map((route) => (
-              <Route
-                exact
-                path={route.routeLink}
-                component={route.file}
-                key={route.routeLink}
-              />
-            ))}
-
-            {/* <Route path="/user/:id" exact component={MainPage} />
-            <Route path="/group/:id" exact component={Editor} /> */}
-          </Switch>
-        </Router>{" "}
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{allPages}</ThemeProvider>
     </React.Fragment>
   );
 };

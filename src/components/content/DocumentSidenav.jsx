@@ -1,7 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import { List, Divider, ListItem, ListItemText } from "@material-ui/core";
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+} from "@mui/material";
 
 const DocumentSidenav = ({ toggleDrawer }) => {
   //DRAWER STYLES

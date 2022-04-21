@@ -1,20 +1,20 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Badge,
-  MenuItem,
-  Menu,
-} from "@material-ui/core";
 import {
   MdNotifications,
   MdMenu,
   MdMoreVert,
   MdAccountCircle,
 } from "react-icons/md";
+import {
+  AppBar,
+  Badge,
+  IconButton,
+  makeStyles,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   grow: {

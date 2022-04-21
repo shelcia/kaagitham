@@ -1,10 +1,10 @@
 import React from "react";
 import { FeaturesContent } from "../../components/content/Features";
 import Topbar from "../../components/templates/Topbar";
-import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Footer from "../../components/templates/Footer";
+import { Button } from "@mui/material";
 
 const Home = () => {
   return (

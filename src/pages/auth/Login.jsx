@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import Footer from "../../components/templates/Footer";
 import Topbar from "../../components/templates/Topbar";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  TextField,
-  Button,
-  Grid,
-  Typography,
-  CssBaseline,
-  Paper,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
-import { Link as RouteLink, useHistory } from "react-router-dom";
+import { Link as RouteLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import {
+  Button,
+  Checkbox,
+  CssBaseline,
+  FormControlLabel,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     backgroundImage:
-      'url("https://cdn.discordapp.com/attachments/795010536365752320/854981273080561664/businessman-signing-contract.png")',
+      'url("https://ik.imagekit.io/shelcia/Kaagitham/businessman-signing-contract_U-YeqkrrV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1650563764419")',
     backgroundRepeat: "no-repeat",
     backgroundColor: "#00000000",
     backgroundSize: "contain",
@@ -57,7 +58,7 @@ const Login = () => {
     password: "",
   });
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleInputs = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -79,7 +80,7 @@ const Login = () => {
         localStorage.setItem("KG-name", res.data.name);
         localStorage.setItem("KG-token", res.data.token);
 
-        history.push(`/user/${res.data.id}`);
+        navigate(`/user/${res.data.id}`);
       })
       .catch((err) => console.log(err));
   };

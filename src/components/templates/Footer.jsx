@@ -1,7 +1,7 @@
 import React from "react";
-import { Divider, IconButton, Tooltip, Link } from "@material-ui/core";
-// import { Link } from "react-router-dom";
+import { Divider, IconButton, Tooltip, Link } from "@mui/material";
 import { FiGithub } from "react-icons/fi";
+
 const Footer = () => {
   return (
     <footer className="footer">

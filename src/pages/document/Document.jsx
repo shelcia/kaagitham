@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { Drawer } from "@material-ui/core";
 import DocumentTopbar from "../../components/templates/DocumentTopbar";
 import { io } from "socket.io-client";
 import { toolbarOptions } from "../../components/content/Toolbar";
 import DocumentSidenav from "../../components/content/DocumentSidenav";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
+import { Drawer } from "@mui/material";
 // import TextEditor from "../../components/content/Editor";
 
 const Editor = () => {

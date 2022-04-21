@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { Button } from "@mui/material";
 
 const DashboardTopbar = () => {
   return (

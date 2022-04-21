@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import DashboardTopbar from "../../components/templates/DashboardTopbar";
 import { FiPlus } from "react-icons/fi";
 import { apiDocument } from "../../services/api/models/DocumentModel";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // const { v4: uuidv4 } = require('uuid');
 
 const Dashboard = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const createDoc = () => {
     const id = localStorage.getItem("KG-id");
 
     apiDocument.post({ id }).then((res) => {
-      history.push(`/document/${res.message.id}`);
+      navigate(`/document/${res.message.id}`);
     });
   };
 
