@@ -7,7 +7,8 @@ import { useRoutes } from "react-router-dom";
 import "./styles/style.css";
 import routes from "./router";
 import { blue } from "@mui/material/colors";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const theme = createTheme({
@@ -18,9 +19,20 @@ const App = () => {
 
   const allPages = useRoutes(routes);
 
+  const toasterOptions = {
+    style: {
+      fontWeight: 500,
+      fontFamily: "'Andika New Basic', sans-serif",
+    },
+  };
+
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>{allPages}</ThemeProvider>
+      <Toaster toastOptions={toasterOptions} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {allPages}
+      </ThemeProvider>
     </React.Fragment>
   );
 };

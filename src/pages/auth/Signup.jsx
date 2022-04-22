@@ -10,48 +10,43 @@ import {
   Paper,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { Link as RouteLink, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { makeStyles } from "@mui/styles";
+import { toast } from "react-hot-toast";
+import { apiAuth } from "../../services/api/models/AuthModel";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "70vh",
-  },
-  image: {
+const Signup = () => {
+  const theme = useTheme();
+
+  const gridImgStyle = {
     backgroundImage:
       'url("https://ik.imagekit.io/shelcia/Kaagitham/businessman-signing-contract_U-YeqkrrV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1650563764419")',
     backgroundRepeat: "no-repeat",
     backgroundColor: "#00000000",
     backgroundSize: "contain",
     backgroundPosition: "center",
-  },
-  container: {
+  };
+
+  const gridContainerStyle = {
     backgroundColor: "#e1f5fe0",
-  },
-  paper: {
+  };
+
+  const gridPaperStyle = {
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
+  };
+
+  const formStyle = {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+  };
 
-const Signup = () => {
-  const classes = useStyles();
+  const submitStyle = {
+    margin: theme.spacing(3, 0, 2),
+  };
 
   const [user, setUser] = useState({
     name: "",
@@ -71,15 +66,25 @@ const Signup = () => {
 
     const body = user;
     console.log(body);
-    axios
-      .post(`${process.env.REACT_APP_REST_LOCAL_LINK}api/auth/register`, body)
-      .then((res) => {
-        console.log(res);
-        toast.success("successfully created account. Now please Login");
-
+    apiAuth.post(body, "register").then((res) => {
+      console.log(res);
+      if (res.status === "200") {
+        toast.success("Successfully created account. Now please Login");
         navigate(`/login`);
-      })
-      .catch((err) => console.log(err));
+      } else {
+        toast.error(res.message);
+      }
+    });
+
+    // axios
+    //   .post(`${process.env.REACT_APP_REST_LOCAL_LINK}api/auth/register`, body)
+    //   .then((res) => {
+    //     // console.log(res);
+    //     toast.success("successfully created account. Now please Login");
+
+    //     navigate(`/login`);
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   return (
@@ -87,9 +92,9 @@ const Signup = () => {
       <section className="bg-auth">
         <Topbar />
         <div className="container" style={{ marginTop: "5rem" }}>
-          <Grid container component="main" className={classes.root}>
+          <Grid container component="main" sx={{ height: "70vh" }}>
             <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            <Grid item xs={false} sm={4} md={7} style={gridImgStyle} />
             <Grid
               item
               xs={12}
@@ -98,13 +103,13 @@ const Signup = () => {
               component={Paper}
               elevation={6}
               square
-              className={classes.container}
+              style={gridContainerStyle}
             >
-              <div className={classes.paper}>
+              <div style={gridPaperStyle}>
                 <Typography component="h1" variant="h5">
                   Sign up
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form style={formStyle} noValidate>
                   <TextField
                     value={user.name}
                     onChange={handleInputs}
@@ -117,6 +122,7 @@ const Signup = () => {
                     name="name"
                     autoComplete="name"
                     autoFocus
+                    size="small"
                   />
                   <TextField
                     value={user.email}
@@ -130,6 +136,7 @@ const Signup = () => {
                     type="email"
                     autoComplete="email"
                     autoFocus
+                    size="small"
                   />
                   <TextField
                     value={user.password}
@@ -143,6 +150,7 @@ const Signup = () => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    size="small"
                   />
                   <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
@@ -153,7 +161,7 @@ const Signup = () => {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.submit}
+                    style={submitStyle}
                     onClick={onSubmit}
                   >
                     Sign Up

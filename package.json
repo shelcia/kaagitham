@@ -1,17 +1,15 @@
 {
-  "name": "googledocsclone",
-  "version": "0.1.0",
+  "name": "kaagitham",
+  "version": "0.0.8",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.6.2",
-    "@mui/styles": "^5.6.2",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.0.0",
+    "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.1.1",
     "axios": "^0.26.1",
-    "quill": "^1.3.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.2.0",
@@ -19,11 +17,9 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "react-spinners": "^0.11.0",
-    "react-toastify": "^7.0.4",
     "socket.io-client": "^4.4.1",
     "suneditor": "^2.42.0",
-    "suneditor-react": "^3.4.0",
-    "uuid": "^8.3.2"
+    "suneditor-react": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

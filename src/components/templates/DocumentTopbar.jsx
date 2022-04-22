@@ -9,43 +9,28 @@ import {
   AppBar,
   Badge,
   IconButton,
-  makeStyles,
   Menu,
   MenuItem,
   Toolbar,
   Typography,
+  useTheme,
 } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
+const DocumentTopbar = ({ toggle }) => {
+  // styling
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
+  const titleStyle = {
     display: "none",
     fontFamily: '"Andika New Basic", sans-serif',
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
-  },
-}));
+  };
 
-const DocumentTopbar = ({ toggle }) => {
-  const classes = useStyles();
+  // menu handlers
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -119,23 +104,23 @@ const DocumentTopbar = ({ toggle }) => {
   );
 
   return (
-    <div className={classes.grow}>
+    <div style={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            style={{ marginRight: theme.spacing(2) }}
             color="inherit"
             aria-label="open drawer"
             onClick={toggle}
           >
             <MdMenu />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography style={{ titleStyle }} variant="h6" noWrap>
             Kaagitham
           </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
+          <div style={{ flexGrow: 1 }} />
+          <div style={{ display: !matches ? "none" : "flex" }}>
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <MdNotifications />
@@ -152,7 +137,7 @@ const DocumentTopbar = ({ toggle }) => {
               <MdAccountCircle />
             </IconButton>
           </div>
-          <div className={classes.sectionMobile}>
+          <div style={{ display: matches ? "none" : "flex" }}>
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}

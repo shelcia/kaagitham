@@ -3,8 +3,6 @@ import DashboardTopbar from "../../components/templates/DashboardTopbar";
 import { FiPlus } from "react-icons/fi";
 import { apiDocument } from "../../services/api/models/DocumentModel";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-// const { v4: uuidv4 } = require('uuid');
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -22,16 +20,10 @@ const Dashboard = () => {
   const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-    // console.log(`${process.env.REACT_APP_REST_LOCAL_LINK}user/${id}`);
-    axios
-      .get(`${process.env.REACT_APP_REST_LOCAL_LINK}api/document/user/${id}`)
-      .then((res) => {
-        // console.log(res);
-        setDocuments(res.data.message.documents);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const ac = new AbortController();
+    apiDocument.getSingle(id, ac.signal, `user`).then((res) => {
+      setDocuments(res.message.documents);
+    });
   }, [id]);
 
   return (

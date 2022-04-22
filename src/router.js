@@ -1,42 +1,9 @@
-// import Home from "./pages/auth/Home";
-// import Signup from "./pages/auth/Signup";
-// import Login from "./pages/auth/Login";
-
-// import Dashboard from "./pages/home/Dashboard";
-
-// import Document from "./pages/document/Document";
-
-// export const HomeRoutes = [
-//   {
-//     file: Home,
-//     routeLink: "/",
-//   },
-//   {
-//     file: Signup,
-//     routeLink: "/signup",
-//   },
-//   {
-//     file: Login,
-//     routeLink: "/login",
-//   },
-// ];
-
-// export const DashboardRoutes = [
-//   {
-//     file: Dashboard,
-//     routeLink: "/user/:id",
-//   },
-//   {
-//     file: Document,
-//     routeLink: "/document/:id",
-//   },
-// ];
-
 import { lazy, Suspense } from "react";
+import { FullLoader } from "./common/Loader";
 
 const Loadable = (Component) => (props) =>
   (
-    <Suspense fallback={<p>rrrr</p>}>
+    <Suspense fallback={<FullLoader />}>
       <Component {...props} />
     </Suspense>
   );

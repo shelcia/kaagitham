@@ -4,7 +4,7 @@
 
 .bg-darkColor {
   background: #1f2329;
-  background-color: #1f2329;
+  background-color: #1f2329 !important;
 }
 
 .navbar-custom {
@@ -69,80 +69,25 @@ button:focus {
   overflow-y: auto;
 }
 
-.ql-container.ql-snow {
-  border: none;
+.se-wrapper-inner {
+  width: 8.5in !important;
+  min-height: 11in !important;
+  padding: 1rem !important;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05) !important;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05) !important;
+  background-color: white;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 1rem !important;
 }
 
-.ql-toolbar.ql-snow {
-  border: none;
+.se-toolbar {
+  background-color: white !important;
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-  background-color: white;
-  width: 100%;
 }
 
-.editor-container {
+.se-container {
   background-color: rgba(0, 0, 0, 0.1);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.editor-container .ql-editor {
-  width: 8.5in;
-  min-height: 11in;
-  padding: 1rem;
-  margin: 1rem;
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-  background-color: white;
-}
-
-@media only screen and (max-width: 8.5in) {
-  .editor-container .ql-editor {
-    width: 95%;
-  }
-  .editor-container {
-    display: block;
-  }
-}
-
-@page {
-  margin: 1in;
-}
-
-@media print {
-  body {
-    background: none;
-  }
-  .editor-container .ql-editor {
-    width: 9.5in;
-    padding: 0;
-    margin: 0;
-    -webkit-box-shadow: none;
-            box-shadow: none;
-    -ms-flex-item-align: start;
-        align-self: flex-start;
-  }
-  .editor-container .ql-toolbar,
-  .MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrimary.MuiPaper-elevation4 {
-    display: none;
-  }
-}
-
-.ql-snow .ql-editor code,
-.ql-snow .ql-editor pre {
-  font-family: "Ubuntu Mono", "Courier New", Courier, monospace !important;
-  font-size: 16px;
 }
 /*# sourceMappingURL=style.css.map */

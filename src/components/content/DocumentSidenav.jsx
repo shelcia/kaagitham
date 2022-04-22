@@ -1,24 +1,10 @@
 import React from "react";
-import clsx from "clsx";
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-} from "@mui/material";
+import { Divider, List, ListItem, ListItemText } from "@mui/material";
 
 const DocumentSidenav = ({ toggleDrawer }) => {
-  //DRAWER STYLES
-  const useStyles = makeStyles({
-    list: {
-      width: 250,
-    },
-    fullList: {
-      width: "auto",
-    },
-  });
-  const classes = useStyles();
+  // DRAWER WIDTH
+
+  const DRAWER_WIDTH = 250;
 
   const sidebarOptions = [
     {
@@ -43,7 +29,7 @@ const DocumentSidenav = ({ toggleDrawer }) => {
 
   return (
     <div
-      className={clsx(classes.list)}
+      style={{ width: DRAWER_WIDTH }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
