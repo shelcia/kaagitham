@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DashboardTopbar from "../../components/templates/DashboardTopbar";
 import { FiPlus } from "react-icons/fi";
 import { apiDocument } from "../../services/api/models/DocumentModel";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -26,26 +26,28 @@ const Dashboard = () => {
     });
   }, [id]);
 
+  const cardClass = `card shadow-lg rounded-3 bg-dark border border-primaryColor d-flex justify-content-center align-items-center document-card mb-2 mx-auto`;
+
   return (
     <React.Fragment>
       <section className="bg-dashboard">
         <DashboardTopbar />
         <div className="container text-white" style={{ marginTop: "5rem" }}>
           <div className="row">
-            <div className="col-sm-2 d-flex">
-              <div className="card p-5 bg-dark" onClick={createDoc}>
-                <FiPlus />
+            <div className="col-sm-2">
+              <div className={cardClass} onClick={createDoc}>
+                <FiPlus size={20} />
               </div>
             </div>
-            <div className="col-sm-10 d-flex">
-              {documents.map((doc, index) => (
-                <Link to={`/document/${doc}`} key={index}>
-                  <div className="card p-5 bg-dark ml-3">
-                    Document {index + 1}
-                  </div>
-                </Link>
-              ))}
-            </div>
+            {documents.map((doc, index) => (
+              <div
+                className="col-sm-2"
+                key={index}
+                onClick={() => navigate(`/document/${doc}`)}
+              >
+                <div className={cardClass}>Document {index + 1}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

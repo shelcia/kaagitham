@@ -4,6 +4,7 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 
 //STYLES
+import "./styles/boostrap.css";
 import "./styles/style.css";
 import routes from "./router";
 import { blue } from "@mui/material/colors";

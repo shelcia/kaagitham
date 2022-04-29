@@ -3,9 +3,9 @@ import Footer from "../../components/templates/Footer";
 import Topbar from "../../components/templates/Topbar";
 import {
   Button,
-  Checkbox,
+  // Checkbox,
   CssBaseline,
-  FormControlLabel,
+  // FormControlLabel,
   Grid,
   Paper,
   TextField,
@@ -62,6 +62,11 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    toast("Signing up!", {
+      icon: "⌛",
+      duration: 1000,
+    });
 
     const body = user;
     // console.log(body);
@@ -144,10 +149,10 @@ const Signup = () => {
                     autoComplete="current-password"
                     size="small"
                   />
-                  <FormControlLabel
+                  {/* <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
                     label="I have read this information"
-                  />
+                  /> */}
                   <Button
                     type="submit"
                     fullWidth

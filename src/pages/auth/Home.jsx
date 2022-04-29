@@ -25,17 +25,20 @@ const Home = () => {
           <div className="row my-5">
             {FeaturesContent.map((feature, index) => (
               <div className="col-lg-3 mb-3" key={index}>
-                <div className="feature-card shadow-lg p-3 rounded-lg mx-auto">
+                <div className="feature-card shadow-lg p-3 rounded-3 mx-auto">
                   {feature.icon}
                   <p>{feature.title}</p>
                 </div>
               </div>
             ))}
           </div>
+          <div className="text-center text-white">
+            <p>* project/features under construction</p>
+          </div>
           <div className="text-center">
             <Link to="/signup" style={{ textDecoration: "none" }}>
               <Button color="primary" variant="contained" size="large">
-                Signup <HiOutlineArrowNarrowRight className="ml-2" />
+                Signup <HiOutlineArrowNarrowRight className="ms-2" />
               </Button>
             </Link>
           </div>

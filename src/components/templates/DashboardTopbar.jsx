@@ -15,22 +15,24 @@ const DashboardTopbar = () => {
   return (
     <header>
       <nav className="navbar navbar-dark bg-light navbar-custom fixed-top">
-        <Link className="navbar-brand" to="/">
-          <HiOutlineDocumentText
-            className="mr-2 mb-1"
-            style={{ height: "30px" }}
-          />
-          <b>Kaagitham</b>
-        </Link>
-        <div>
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-            onClick={logout}
-          >
-            Logout <FiLogOut className="ml-2" />
-          </Button>
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            <HiOutlineDocumentText
+              className="me-2 mb-1"
+              style={{ height: "30px" }}
+            />
+            <b>Kaagitham</b>
+          </Link>
+          <div>
+            <Button
+              color="primary"
+              variant="contained"
+              size="large"
+              onClick={logout}
+            >
+              Logout <FiLogOut className="ms-2" />
+            </Button>
+          </div>
         </div>
       </nav>
     </header>

@@ -15,6 +15,10 @@ $shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
   background-color: $bgColor !important;
 }
 
+.border-primaryColor {
+  border-color: $borderColor !important;
+}
+
 .navbar-custom {
   border-top: 4px solid $borderColor;
   background-color: transparent !important;
@@ -64,6 +68,12 @@ $shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
     color: $textColor;
     margin-left: 1rem;
   }
+}
+
+.document-card {
+  cursor: pointer;
+  max-width: 120px;
+  height: 150px;
 }
 
 button:focus {

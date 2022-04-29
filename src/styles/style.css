@@ -7,6 +7,10 @@
   background-color: #1f2329 !important;
 }
 
+.border-primaryColor {
+  border-color: #09b1ff !important;
+}
+
 .navbar-custom {
   border-top: 4px solid #09b1ff;
   background-color: transparent !important;
@@ -57,6 +61,12 @@
   margin-bottom: 0px;
   color: white;
   margin-left: 1rem;
+}
+
+.document-card {
+  cursor: pointer;
+  max-width: 120px;
+  height: 150px;
 }
 
 button:focus {

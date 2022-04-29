@@ -10,24 +10,30 @@ const Topbar = () => {
   return (
     <header>
       <nav className="navbar navbar-dark bg-light navbar-custom fixed-top">
-        <Link className="navbar-brand" to="/">
-          <HiOutlineDocumentText
-            className="mr-2 mb-1"
-            style={{ height: "30px" }}
-          />
-          <b>Kaagitham</b>
-        </Link>
-        <div>
-          <Link to="/login" style={{ textDecoration: "none" }} className="mr-3">
-            <Button color="primary" variant="outlined" size="large">
-              Login
-            </Button>
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            <HiOutlineDocumentText
+              className="me-2 mb-1"
+              style={{ height: "30px" }}
+            />
+            <b>Kaagitham</b>
           </Link>
-          <Link to="/signup" style={{ textDecoration: "none" }}>
-            <Button color="primary" variant="contained" size="large">
-              Signup <HiOutlineArrowNarrowRight className="ml-2" />
-            </Button>
-          </Link>
+          <div>
+            <Link
+              to="/login"
+              style={{ textDecoration: "none" }}
+              className="me-3"
+            >
+              <Button color="primary" variant="outlined" size="large">
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              <Button color="primary" variant="contained" size="large">
+                Signup <HiOutlineArrowNarrowRight className="ms-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </nav>
     </header>

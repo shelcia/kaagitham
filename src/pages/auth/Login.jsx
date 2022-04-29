@@ -4,9 +4,9 @@ import Topbar from "../../components/templates/Topbar";
 import { Link as RouteLink, useNavigate } from "react-router-dom";
 import {
   Button,
-  Checkbox,
+  // Checkbox,
   CssBaseline,
-  FormControlLabel,
+  // FormControlLabel,
   Grid,
   Paper,
   TextField,
@@ -62,6 +62,10 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     // console.table(inputs);
+    toast("Signing up!", {
+      icon: "⌛",
+      duration: 1000,
+    });
 
     const body = {
       email: inputs.email,
@@ -129,10 +133,10 @@ const Login = () => {
                     autoComplete="current-password"
                     size="small"
                   />
-                  <FormControlLabel
+                  {/* <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
                     label="I have read this information"
-                  />
+                  /> */}
                   <Button
                     type="submit"
                     fullWidth
