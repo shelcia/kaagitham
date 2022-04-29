@@ -10,10 +10,10 @@ import { LOCALHOST_URL } from "../../api";
 // const BASE_URL = HEROKU_BASE_URL;
 const BASE_URL = LOCALHOST_URL;
 
+const token = localStorage.getItem("KG-token");
+
 /** @param {string} resource */
 const getAll = async (resource, signal, isAuthorized = false) => {
-  const token = localStorage.getItem("KG-token");
-
   const headers = isAuthorized ? { "auth-token": `${token}` } : {};
 
   try {
@@ -37,8 +37,6 @@ const getSingle = async (
   additionalParam = "",
   isAuthorized = false
 ) => {
-  const token = localStorage.getItem("KG-token");
-
   const headers = isAuthorized ? { "auth-token": `${token}` } : {};
 
   try {
@@ -67,7 +65,6 @@ const getSingle = async (
 /** @param {string} resource */
 /** @param {string} params */
 const getByParams = async (resource, params, signal, isAuthorized = false) => {
-  const token = localStorage.getItem("KG-token");
   const headers = isAuthorized ? { "auth-token": `${token}` } : {};
 
   try {
@@ -90,7 +87,6 @@ const post = async (
   isAuthorized = false
 ) => {
   // console.log({ resource });
-  const token = localStorage.getItem("KG-token");
   const headers = isAuthorized ? { "auth-token": `${token}` } : {};
 
   try {
@@ -123,8 +119,6 @@ const postFormData = async (
   additionalParam,
   isAuthorized = false
 ) => {
-  const token = localStorage.getItem("KG-token");
-  console.log("invoked");
   const headers = isAuthorized
     ? {
         "Content-Type": "multipart/form-data",
@@ -158,11 +152,30 @@ const postFormData = async (
 
 /** @param {string} resource */
 /** @param {object} model */
-const put = async (resource, model, signal, isAuthorized = false) => {
+const put = async (
+  resource,
+  model,
+  additionalParam = "",
+  isAuthorized = false
+) => {
+  const headers = isAuthorized ? { "auth-token": `${token}` } : {};
+
   try {
-    const response = await axios.put(`${BASE_URL}/${resource}`, model, {
-      signal: signal,
-    });
+    let response;
+    if (additionalParam === "") {
+      response = await axios.put(`${BASE_URL}/${resource}`, model, {
+        headers: headers,
+      });
+    } else {
+      response = await axios.put(
+        `${BASE_URL}/${resource}/${additionalParam}`,
+        model,
+        {
+          headers: headers,
+        }
+      );
+    }
+
     return handleResponse(response);
   } catch (error) {
     return handleError(error);
@@ -185,13 +198,12 @@ const putById = async (resource, id, model, signal, isAuthorized = false) => {
 /** @param {string} resource */
 /** @param {object} model */
 const patch = async (resource, model, signal, isAuthorized = false) => {
-  const token = localStorage.getItem("KG-token");
+  const headers = isAuthorized ? { "auth-token": `${token}` } : {};
+
   try {
     const response = await axios.patch(`${BASE_URL}/${resource}`, model, {
       signal: signal,
-      headers: {
-        "auth-token": token,
-      },
+      headers: headers,
     });
     return handleResponse(response);
   } catch (error) {
@@ -202,7 +214,6 @@ const patch = async (resource, model, signal, isAuthorized = false) => {
 /** @param {string} resource */
 /** @param {string} id */
 const remove = async (resource, id, additionalParam, isAuthorized = false) => {
-  const token = localStorage.getItem("KG-token");
   const headers = isAuthorized ? { "auth-token": `${token}` } : {};
 
   try {

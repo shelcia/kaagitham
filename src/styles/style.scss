@@ -32,7 +32,7 @@ $shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .title {
-  max-width: 740px;
+  max-width: 840px;
   margin-right: auto;
   margin-left: auto;
   background-image: url("./svg.png");
@@ -52,7 +52,7 @@ $shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 .feature-card {
   background-color: $featureCard;
   border: 2px solid $borderColor;
-  width: 260px;
+  min-width: 260px;
   svg {
     color: $borderColor;
     // height: 2rem;
@@ -80,12 +80,9 @@ button:focus {
   width: 8.5in !important;
   min-height: 11in !important;
   padding: 1rem !important;
-  // margin: 1rem !important;
   box-shadow: $shadow !important;
   background-color: $textColor;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-top: 1rem !important;
+  margin: 1rem auto !important;
 }
 .se-toolbar {
   background-color: $textColor !important;
@@ -95,70 +92,3 @@ button:focus {
 .se-container {
   background-color: rgba(0, 0, 0, 0.1);
 }
-
-// .ql-container.ql-snow {
-//   border: none;
-// }
-
-// .ql-toolbar.ql-snow {
-//   border: none;
-//   box-shadow: $shadow;
-//   background-color: $textColor;
-//   width: 100%;
-// }
-// .editor-container {
-//   background-color: rgba(0, 0, 0, 0.1);
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   align-items: center;
-//   .ql-editor {
-//     width: 8.5in;
-//     min-height: 11in;
-//     padding: 1rem;
-//     margin: 1rem;
-//     box-shadow: $shadow;
-//     background-color: $textColor;
-//   }
-// }
-
-// @media only screen and (max-width: 8.5in) {
-//   .editor-container .ql-editor {
-//     width: 95%;
-//   }
-//   .editor-container {
-//     display: block;
-//   }
-// }
-
-// @page {
-//   margin: 1in;
-// }
-
-// @media print {
-//   body {
-//     background: none;
-//   }
-//   .editor-container .ql-editor {
-//     width: 9.5in;
-//     // height: 9in;
-//     padding: 0;
-//     margin: 0;
-//     box-shadow: none;
-//     align-self: flex-start;
-//   }
-//   .editor-container .ql-toolbar,
-//   .MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrimary.MuiPaper-elevation4 {
-//     display: none;
-//   }
-// }
-
-// .ql-snow .ql-editor code,
-// .ql-snow .ql-editor pre {
-//   font-family: "Ubuntu Mono", "Courier New", Courier, monospace !important;
-//   font-size: 16px;
-// }
-
-// .ql-snow.ql-picker {
-//   color: $textColor !important;
-// }

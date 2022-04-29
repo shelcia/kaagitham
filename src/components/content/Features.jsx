@@ -1,21 +1,21 @@
 import React from "react";
-import { FiUsers, FiCode } from "react-icons/fi";
+import { FiUsers, FiCode, FiGrid, FiSliders } from "react-icons/fi";
 
 export const FeaturesContent = [
   {
     icon: <FiUsers />,
-    title: "Live Collaboration",
+    title: "Live Collaboration*",
   },
   {
     icon: <FiCode />,
     title: "Generate Code Snippets",
   },
   {
-    icon: <FiUsers />,
-    title: "Live Collaboration",
+    icon: <FiGrid />,
+    title: "Pre-made Templates*",
   },
   {
-    icon: <FiUsers />,
-    title: "Live Collaboration",
+    icon: <FiSliders />,
+    title: "Access Controls*",
   },
 ];

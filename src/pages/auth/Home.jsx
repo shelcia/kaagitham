@@ -17,10 +17,10 @@ const Home = () => {
           style={{ marginTop: "5rem" }}
         >
           <h1 className="title mt-3" style={{ fontWeight: "700" }}>
-            Collaborate from anywhere to create drafts
+            Collaborate from anywhere to create drafts*
           </h1>
           <p className="text-white mt-3">
-            Kaagitham helps you create draft which can be shared across easily.
+            Kaagitham helps you create draft which can be shared across easily.*
           </p>
           <div className="row my-5">
             {FeaturesContent.map((feature, index) => (

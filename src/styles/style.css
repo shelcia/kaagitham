@@ -24,7 +24,7 @@
 }
 
 .title {
-  max-width: 740px;
+  max-width: 840px;
   margin-right: auto;
   margin-left: auto;
   background-image: url("./svg.png");
@@ -44,7 +44,7 @@
 .feature-card {
   background-color: black;
   border: 2px solid #09b1ff;
-  width: 260px;
+  min-width: 260px;
 }
 
 .feature-card svg {
@@ -76,9 +76,7 @@ button:focus {
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05) !important;
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05) !important;
   background-color: white;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-top: 1rem !important;
+  margin: 1rem auto !important;
 }
 
 .se-toolbar {

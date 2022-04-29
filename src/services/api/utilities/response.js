@@ -6,14 +6,13 @@
 // on the response header.
 
 export function handleResponse(response) {
-  if (response.results) {
-    return response.results;
-  }
-
+  // console.log(response);
   if (response.data) {
     return response.data;
   }
-
+  if (response.results) {
+    return response.results;
+  }
   return response;
 }
 

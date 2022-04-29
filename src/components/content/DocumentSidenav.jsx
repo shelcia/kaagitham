@@ -22,9 +22,9 @@ const DocumentSidenav = ({ toggleDrawer }) => {
     {
       label: "Permissions",
     },
-    {
-      label: "Download",
-    },
+    // {
+    //   label: "Download",
+    // },
   ];
 
   return (
@@ -34,7 +34,7 @@ const DocumentSidenav = ({ toggleDrawer }) => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <h3>MENU</h3>
+      <h3 className="px-auto">MENU</h3>
       <List>
         {sidebarOptions.map((options, index) => (
           <ListItem button key={index}>

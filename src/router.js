@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import AuthGuard from "./common/AuthGuard";
 import { FullLoader } from "./common/Loader";
 
 const Loadable = (Component) => (props) =>
@@ -15,9 +16,15 @@ const SignupPage = Loadable(lazy(() => import("./pages/auth/Signup")));
 const DashboardPage = Loadable(lazy(() => import("./pages/home/Dashboard")));
 const DocumentPage = Loadable(lazy(() => import("./pages/document/Document")));
 
+const ErrorPage = Loadable(lazy(() => import("./pages/others/ErrorPage")));
+
 const routes = [
   {
     path: "",
+    element: <HomePage />,
+  },
+  {
+    path: "homepage",
     element: <HomePage />,
   },
   {
@@ -29,16 +36,24 @@ const routes = [
     element: <SignupPage />,
   },
   {
-    path: "homepage",
-    element: <HomePage />,
-  },
-  {
     path: "user/:id",
-    element: <DashboardPage />,
+    element: (
+      <AuthGuard>
+        <DashboardPage />
+      </AuthGuard>
+    ),
   },
   {
     path: "document/:id",
-    element: <DocumentPage />,
+    element: (
+      <AuthGuard>
+        <DocumentPage />
+      </AuthGuard>
+    ),
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ];
 

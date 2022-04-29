@@ -62,29 +62,21 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.table(inputs);
 
     const body = user;
-    console.log(body);
+    // console.log(body);
     apiAuth.post(body, "register").then((res) => {
       console.log(res);
       if (res.status === "200") {
-        toast.success("Successfully created account. Now please Login");
-        navigate(`/login`);
+        toast.success("Successfully created account. ");
+        localStorage.setItem("KG-id", res.message.id);
+        localStorage.setItem("KG-name", res.message.name);
+        localStorage.setItem("KG-token", res.message.token);
+        navigate(`/user/${res.message.id}`);
       } else {
         toast.error(res.message);
       }
     });
-
-    // axios
-    //   .post(`${process.env.REACT_APP_REST_LOCAL_LINK}api/auth/register`, body)
-    //   .then((res) => {
-    //     // console.log(res);
-    //     toast.success("successfully created account. Now please Login");
-
-    //     navigate(`/login`);
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   return (

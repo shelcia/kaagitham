@@ -11,15 +11,16 @@ const Footer = () => {
           <div className="col-sm-6 d-flex align-items-center">
             <p className="mb-0">
               MIT Licensed. Created By{"  "}
-              <Link href="https://shelcia-portfolio.netlify.app/">Shelcia</Link>
-              .
+              <Link href="https://shelcia-dev.me/">Shelcia</Link>.
             </p>
           </div>
           <div className="col-sm-6 d-flex align-items-center justify-content-end">
             <Tooltip title="Check code on Github" aria-label="github">
-              <IconButton aria-label="github" color="primary">
-                <FiGithub />
-              </IconButton>
+              <Link href="https://github.com/shelcia/kaagitham" target="_blank">
+                <IconButton aria-label="github" color="primary">
+                  <FiGithub />
+                </IconButton>
+              </Link>
             </Tooltip>
           </div>
         </div>

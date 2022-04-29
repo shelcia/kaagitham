@@ -1,10 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { Button } from "@mui/material";
 
 const DashboardTopbar = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <header>
       <nav className="navbar navbar-dark bg-light navbar-custom fixed-top">
@@ -16,11 +23,14 @@ const DashboardTopbar = () => {
           <b>Kaagitham</b>
         </Link>
         <div>
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <Button color="primary" variant="contained" size="large">
-              Logout <FiLogOut className="ml-2" />
-            </Button>
-          </Link>
+          <Button
+            color="primary"
+            variant="contained"
+            size="large"
+            onClick={logout}
+          >
+            Logout <FiLogOut className="ml-2" />
+          </Button>
         </div>
       </nav>
     </header>
